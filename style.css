@@ -1,0 +1,474 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f0f1b 75%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Stars Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: linear-gradient(45deg, #fff, #ff6b6b);
+            border-radius: 50%;
+            animation: shoot 3s linear infinite;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(-100px) translateY(100px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(300px) translateY(-300px);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #64ffda;
+            text-shadow: 0 0 10px #64ffda;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #64ffda;
+            text-shadow: 0 0 5px #64ffda;
+        }
+
+        .nav-links a.active {
+            color: #64ffda;
+        }
+
+        /* Main Content */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 100px 2rem 2rem;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Home Page Styles */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #64ffda, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(100, 255, 218, 0.5); }
+            to { text-shadow: 0 0 30px rgba(100, 255, 218, 0.8), 0 0 40px rgba(100, 255, 218, 0.4); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #b8b8b8;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .welcome-message {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(100, 255, 218, 0.1);
+        }
+
+        .welcome-message h3 {
+            color: #64ffda;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Solar System */
+        .solar-system {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin: 4rem auto;
+            border-radius: 50%;
+            border: 2px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .sun {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #ffd93d, #ff6b6b);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px #ffd93d;
+            animation: rotate 10s linear infinite;
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            background: #64ffda;
+            animation: orbit 15s linear infinite;
+        }
+
+        .planet:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 200px;
+            left: 200px;
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            background: transparent;
+            animation-duration: 8s;
+        }
+
+        .planet:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            top: 150px;
+            left: 150px;
+            border: 2px solid rgba(255, 107, 107, 0.3);
+            background: transparent;
+            animation-duration: 12s;
+            animation-direction: reverse;
+        }
+
+        .planet-dot {
+            width: 12px;
+            height: 12px;
+            background: #64ffda;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px #64ffda;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.2);
+        }
+
+        .skill-category h3 {
+            color: #64ffda;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #64ffda, #4ecdc4);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(100, 255, 218, 0.2);
+        }
+
+        .contact-item h4 {
+            color: #64ffda;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: #64ffda;
+        }
+
+        /* About, Education, Internship Page Styles */
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #64ffda, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.2);
+        }
+
+        .timeline-item {
+            margin: 2rem 0;
+            padding-left: 3rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, #64ffda, #ff6b6b);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            background: #64ffda;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #64ffda;
+        }
+
+        .timeline-date {
+            color: #64ffda;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .timeline-subtitle {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .timeline-description {
+            color: #b8b8b8;
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(100, 255, 218, 0.2);
+        }
+
+        .project-title {
+            color: #64ffda;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: #b8b8b8;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .solar-system {
+                width: 400px;
+                height: 400px;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
